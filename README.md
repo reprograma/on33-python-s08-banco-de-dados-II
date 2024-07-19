@@ -373,6 +373,8 @@ Transformação para 1NF:
 | 1  | João  | SQL         |
 | 2  | Maria | Python      |
 | 2  | Maria | JavaScript  |
+
+
 Segunda Forma Normal (2NF): Além de estar na 1NF, cada coluna não chave deve depender totalmente da chave primária.
 
 Terceira Forma Normal (3NF): Além de estar na 2NF, não deve haver dependência transitiva de atributos não chave.

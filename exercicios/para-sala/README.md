@@ -186,6 +186,113 @@
     ```
 
 
+
+11. **Exercício: Utilizando Joins em SQLite com Python**
+
+### Parte 1: Criação das Tabelas e Inserção de Dados
+
+1. Crie duas tabelas, `clientes` e `pedidos`.
+2. Insira alguns dados de exemplo em ambas as tabelas.
+
+### Parte 2: Consultas com Joins
+
+1. Faça uma consulta para obter todos os pedidos junto com os dados dos clientes.
+2. Faça uma consulta para obter todos os clientes que não têm pedidos.
+
+### Passo a Passo
+
+#### Parte 1: Criação das Tabelas e Inserção de Dados
+
+```python
+import sqlite3
+
+# Conectar ao banco de dados (ou criar um banco de dados)
+conexao = sqlite3.connect('exercicio_join.db')
+cursor = conexao.cursor()
+
+# Criar a tabela de clientes
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS clientes (
+        id INTEGER PRIMARY KEY,
+        nome TEXT NOT NULL,
+        email TEXT NOT NULL
+    )
+''')
+
+# Criar a tabela de pedidos
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS pedidos (
+        id INTEGER PRIMARY KEY,
+        data TEXT NOT NULL,
+        valor REAL NOT NULL,
+        cliente_id INTEGER,
+        FOREIGN KEY (cliente_id) REFERENCES clientes (id)
+    )
+''')
+
+# Inserir dados na tabela de clientes
+clientes = [
+    (1, 'Ana', 'ana@example.com'),
+    (2, 'Bruno', 'bruno@example.com'),
+    (3, 'Carla', 'carla@example.com')
+]
+cursor.executemany('INSERT INTO clientes VALUES (?, ?, ?)', clientes)
+
+# Inserir dados na tabela de pedidos
+pedidos = [
+    (1, '2023-07-01', 100.50, 1),
+    (2, '2023-07-02', 200.75, 2),
+    (3, '2023-07-03', 150.00, 1)
+]
+cursor.executemany('INSERT INTO pedidos VALUES (?, ?, ?, ?)', pedidos)
+
+# Salvar (commit) as mudanças
+conexao.commit()
+```
+
+#### Parte 2: Consultas com Joins
+
+```python
+# Consulta 1: Obter todos os pedidos com os dados dos clientes
+cursor.execute('''
+    SELECT pedidos.id, pedidos.data, pedidos.valor, clientes.nome, clientes.email
+    FROM pedidos
+    JOIN clientes ON pedidos.cliente_id = clientes.id
+''')
+resultado = cursor.fetchall()
+print("Pedidos com dados dos clientes:")
+for linha in resultado:
+    print(linha)
+
+# Consulta 2: Obter todos os clientes que não têm pedidos
+cursor.execute('''
+    SELECT clientes.id, clientes.nome, clientes.email
+    FROM clientes
+    LEFT JOIN pedidos ON clientes.id = pedidos.cliente_id
+    WHERE pedidos.id IS NULL
+''')
+resultado = cursor.fetchall()
+print("\nClientes sem pedidos:")
+for linha in resultado:
+    print(linha)
+
+# Fechar a conexão
+conexao.close()
+```
+
+### Tarefas do Exercício
+
+1. **Execute o código fornecido** para criar o banco de dados, as tabelas e inserir os dados.
+2. **Analise os resultados** das consultas com joins:
+   - A primeira consulta deve retornar todos os pedidos junto com os dados dos clientes.
+   - A segunda consulta deve retornar todos os clientes que não têm pedidos associados.
+
+### Explicação
+
+- **JOIN**: Utilizado para combinar registros de duas ou mais tabelas com base em uma coluna relacionada entre elas.
+- **LEFT JOIN**: Retorna todos os registros da tabela à esquerda (clientes) e os registros correspondentes da tabela à direita (pedidos). Se não houver correspondência, os resultados da tabela à direita serão NULL.
+
+
 ---
 
 Terminou o exercício? Dá uma olhada nessa checklist e confere se tá tudo certinho, combinado?!

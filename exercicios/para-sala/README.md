@@ -189,19 +189,19 @@
 
 11. **Exercício: Utilizando Joins em SQLite com Python**
 
-### Parte 1: Criação das Tabelas e Inserção de Dados
+- Parte 1: Criação das Tabelas e Inserção de Dados
 
 1. Crie duas tabelas, `clientes` e `pedidos`.
 2. Insira alguns dados de exemplo em ambas as tabelas.
 
-### Parte 2: Consultas com Joins
+- Parte 2: Consultas com Joins
 
 1. Faça uma consulta para obter todos os pedidos junto com os dados dos clientes.
 2. Faça uma consulta para obter todos os clientes que não têm pedidos.
 
-### Passo a Passo
+*Passo a Passo*
 
-#### Parte 1: Criação das Tabelas e Inserção de Dados
+- Parte 1: Criação das Tabelas e Inserção de Dados
 
 ```python
 import sqlite3
@@ -250,7 +250,7 @@ cursor.executemany('INSERT INTO pedidos VALUES (?, ?, ?, ?)', pedidos)
 conexao.commit()
 ```
 
-#### Parte 2: Consultas com Joins
+- Parte 2: Consultas com Joins
 
 ```python
 # Consulta 1: Obter todos os pedidos com os dados dos clientes
@@ -280,14 +280,14 @@ for linha in resultado:
 conexao.close()
 ```
 
-### Tarefas do Exercício
+- Tarefas do Exercício
 
 1. **Execute o código fornecido** para criar o banco de dados, as tabelas e inserir os dados.
 2. **Analise os resultados** das consultas com joins:
    - A primeira consulta deve retornar todos os pedidos junto com os dados dos clientes.
    - A segunda consulta deve retornar todos os clientes que não têm pedidos associados.
 
-### Explicação
+- Explicação
 
 - **JOIN**: Utilizado para combinar registros de duas ou mais tabelas com base em uma coluna relacionada entre elas.
 - **LEFT JOIN**: Retorna todos os registros da tabela à esquerda (clientes) e os registros correspondentes da tabela à direita (pedidos). Se não houver correspondência, os resultados da tabela à direita serão NULL.

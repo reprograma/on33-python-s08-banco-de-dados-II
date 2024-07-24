@@ -1,3 +1,5 @@
+# criando o banco de dados livraria.db
+
 import sqlite3
 
 conn = sqlite3.connect('livraria.db')

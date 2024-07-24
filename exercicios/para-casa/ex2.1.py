@@ -1,3 +1,5 @@
+# inserindo dados na tabela livros
+
 import sqlite3
 
 conn = sqlite3.connect('livraria.db')

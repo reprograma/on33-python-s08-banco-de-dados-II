@@ -1,3 +1,4 @@
+# criando o arquivo livros.csv
 import sqlite3
 import csv
 

@@ -1,3 +1,5 @@
+# deletando a linha do id = 4
+
 import sqlite3
 
 conn = sqlite3.connect('livraria.db')

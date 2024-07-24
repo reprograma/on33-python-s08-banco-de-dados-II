@@ -1,3 +1,5 @@
+# fazendo um select de toda a tabela livros
+
 import sqlite3
 
 conn = sqlite3.connect('livraria.db')

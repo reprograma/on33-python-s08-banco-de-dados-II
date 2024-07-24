@@ -1,3 +1,5 @@
+# atualizando o valor do preço do livro com id = 1 para 200 reais
+
 import sqlite3
 
 conn = sqlite3.connect('livraria.db')

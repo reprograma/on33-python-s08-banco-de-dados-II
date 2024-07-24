@@ -1,3 +1,5 @@
+# exportando os dados da tabela livros do livraria.db para um arquivo csv
+
 import csv
 import sqlite3
 

@@ -20,7 +20,7 @@
 
    conn.commit()
    cursor.close()
-   conn.close()
+   conn.close() 
    ```
 
 2. **Inserção de Dados**:

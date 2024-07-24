@@ -1,4 +1,4 @@
-# Exercício de Casa 🏠 
+# Exercício de Casa 🏠
 
 ### Integração Completa de CSV com SQLite usando Python
 

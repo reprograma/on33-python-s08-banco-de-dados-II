@@ -1,17 +1,15 @@
+import sqlite3
 import csv
 
-livros = [
-       [1, 'w', 'Bete', '1999', '40,99'],
-       [2, 'P', 'Lisa', '2005', '38,50'],
-       [3, 'Q', 'Vilma', '2013', '25,90'],
-       [4, 'R', 'Maya', '2015', '30'],
-       [5, 'Y', 'Bela', '2020', '50']
-   ]
+conn = sqlite3.connect('livraria.db')
+cursor = conn.cursor()
 
-with open('livros.csv', 'w', newline='', encoding='utf-8') as csvfile:
-   escritor = csv.writer(csvfile)
-   escritor.writerow(['id', 'titulo', 'autor', 'ano', 'preco'])
-   escritor.writerows(livros)
+with open('livros.csv', newline='', encoding='utf-8') as csvfile:
+       leitor = csv.reader(csvfile)
+       next(leitor)  # Pular o cabeçalho
+       for linha in leitor:
+           cursor.execute("INSERT INTO livros (titulo, autor, ano, preco) VALUES (?, ?, ?, ?)", (linha[1], linha[2], linha[3], linha[4]))
 
-
-   
+conn.commit()
+cursor.close()
+conn.close()

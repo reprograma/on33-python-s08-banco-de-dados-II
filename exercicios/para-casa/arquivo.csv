@@ -1,0 +1,22 @@
+import csv
+
+# Dados dos livros
+livros = [
+    {'titulo': 'Livro A', 'autor': 'Autor A', 'ano': 2020, 'preco': 25.99},
+    {'titulo': 'Livro B', 'autor': 'Autor B', 'ano': 2019, 'preco': 19.99},
+    {'titulo': 'Livro C', 'autor': 'Autor C', 'ano': 2018, 'preco': 29.99},
+    {'titulo': 'Livro D', 'autor': 'Autor D', 'ano': 2021, 'preco': 15.99},
+    {'titulo': 'Livro E', 'autor': 'Autor E', 'ano': 2022, 'preco': 22.99},
+]
+
+# Nome do arquivo CSV
+arquivo_csv = 'livros.csv'
+
+# Criando o arquivo CSV e escrevendo os dados
+with open(arquivo_csv, 'w', newline='') as file:
+    writer = csv.DictWriter(file, fieldnames=['titulo', 'autor', 'ano', 'preco'])
+    writer.writeheader()
+    writer.writerows(livros)
+
+print(f'Arquivo {arquivo_csv} criado com sucesso!')
+
